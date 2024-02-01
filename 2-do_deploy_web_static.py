@@ -3,12 +3,32 @@
 A fabric script based on 1-pack_web_static.py file
 """
 
+from datetime import datetime
 from fabric.api import local, env, run, put
 import os
 
 
 # Connect to 2 servers
 env.hosts = ["34.229.69.59", "54.85.196.44"]
+env.user = "ubuntu"
+
+def do_pack():
+    """
+    Create a .tgz archive from the contents of the web_static folder.
+    """
+
+    date = datetime.now().strftime("%Y%m%d%H%M%S")
+
+    # create versions if doesn't exist
+    if not os.path.exists("versions"):
+        local("mkdir -p versions")
+    # path
+    path_to_archive = f"versions/web_static_{date}.tgz"
+
+    # archive the files tar [-options] <name of the tar archive> [directory]
+    archives = local(f"tar -czvf {path_to_archive} web_static")
+
+    return archives
 
 
 def do_deploy(archive_path):
