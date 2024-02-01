@@ -10,7 +10,7 @@ sudo mkdir -p /data/web_static/releases/test
 sudo mkdir -p /data/web_static/shared
 
 # Create HTML file
-echo "
+sudo echo "
         <html>
                 <head>
                 </head>
@@ -27,7 +27,8 @@ sudo ln -sf /data/web_static/releases/test /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
 
 # New Nginx configuration
-echo "server {
+sudo echo "
+server {
     listen 80;
     server_name _;
     location /hbnb_static {
