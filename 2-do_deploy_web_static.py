@@ -21,26 +21,27 @@ def do_deploy(archive_path):
     put(archive_path, "/tmp/")
     # get the name of the file
     # right now its smthing like /versions/archives.tgz
+
     filename = archive_path.split("/")[-1]  # only left with archives.tgz
 
     # remove the extension
     new_path = f"/data/web_static/releases/{filename.split('.')[0]}"
 
-    run(f"mkdir -p {new_path}")
+    run(f"sudo mkdir -p {new_path}")
 
     # extract the compressed archive files
-    run(f"tar -xzf /tmp/{filename} -C {new_path}")
+    run(f"sudo tar -xzf /tmp/{filename} -C {new_path}")
 
     # Delete the archive from the web server
-    run(f"rm /tmp/{filename}")
+    run(f"sudo rm /tmp/{filename}")
 
     # Move contents to the current symlink (directory)
-    run(f"mv {new_path}/web_static/* {new_path}/")
+    run(f"sudo rsync -a {new_path}/web_static/* {new_path}/")
 
     # Delete the symbolic link /data/web_static/current
-    run("rm -rf /data/web_static/current")
+    run("sudo rm -rf /data/web_static/current")
 
     # Create a new symbolic link /data/web_static/current
-    run(f"ln -s {new_path} /data/web_static/current")
+    run(f"sudo ln -s {new_path} /data/web_static/current")
 
     return True
