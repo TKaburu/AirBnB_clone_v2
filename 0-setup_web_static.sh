@@ -18,7 +18,7 @@ sudo echo "
                         Holberton School
                 </body>
         </html>
-" >> /data/web_static/releases/test/index.html
+" | sudo tee /data/web_static/releases/test/index.html
 
 # Symbolic link
 sudo ln -sf /data/web_static/releases/test /data/web_static/current
@@ -37,7 +37,7 @@ server {
 
 }
 
-" >> /etc/nginx/sites-available/default
+"  | sudo tee /etc/nginx/sites-available/default
 
 # Start Nginx
 sudo service nginx start
