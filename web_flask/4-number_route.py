@@ -52,7 +52,7 @@ def python_is(text):
 
 
 @app.route("/number/<int:n>", strict_slashes=False)
-def python_is(n):
+def number_is(n):
     """
     Route for n only if its an integer
     """
