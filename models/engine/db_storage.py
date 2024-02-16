@@ -49,16 +49,6 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
-    def delete(self, obj=None):
-        """ 
-        This method delete an existing element
-        """
-        if obj:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            del self.__objects[key]
-
     def close(self):
-        """ 
-        This moethod calls reload()
-        """
-        self.reload()
+        """close the query"""
+        self.__session.close()
