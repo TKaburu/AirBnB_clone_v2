@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-# A script that starts a flask app and / returns “Hello HBNB!”
+"""
+A script that starts a flask app and / returns “Hello HBNB!”
+"""
 
 from flask import Flask
 
