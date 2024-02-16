@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/python3
 # A script that starts a flask app and / returns “Hello HBNB!”
 
 from flask import Flask
@@ -14,4 +14,4 @@ def home():
     return "Hello HBNB!"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000))
+    app.run(host='0.0.0.0', port=5000)
